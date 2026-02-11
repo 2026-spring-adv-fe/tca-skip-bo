@@ -37,6 +37,32 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+
+      <div className="card bg-base-100 w-full shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Stats</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        </div>
+      </div>
+      <div className="card bg-base-100 w-full shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Stats</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        </div>
+      </div>
+      <div className="card bg-base-100 w-full shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Stats</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        </div>
+      </div>
+      <div className="card bg-base-100 w-full shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Stats</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        </div>
+      </div>
     </div>
   )
 }
