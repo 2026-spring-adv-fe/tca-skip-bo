@@ -9,6 +9,7 @@ function App() {
   return (
     <div
       className='p-3'
+      data-theme='coffee'
     >
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -39,14 +40,14 @@ function App() {
       </p>
 
 
-      <div className="card bg-base-100 w-full shadow-lg my-3">
+      <div className="card bg-base-100 w-full shadow-lg my-5">
         <div className="card-body p-2">
           <h2 className="card-title">Stats</h2>
           <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
         </div>
       </div>
 
-      <div className="card bg-base-100 w-full shadow-lg my-3">
+      <div className="card bg-base-100 w-full shadow-lg my-5">
         <div className="card-body p-2">
           <h2 className="card-title">Stats</h2>
           {/* For TSX uncomment the commented types below */}
@@ -56,7 +57,7 @@ function App() {
         </div>
       </div>
 
-      <div className="card bg-base-100 w-full shadow-lg my-3">
+      <div className="card bg-base-100 w-full shadow-lg my-5">
         <div className="card-body p-2">
           <h2 className="card-title">Stats</h2>
           <ul className="timeline timeline-vertical">
@@ -157,7 +158,7 @@ function App() {
         </div>
       </div>
 
-      <div className="card bg-base-100 w-full shadow-lg my-3">
+      <div className="card bg-base-100 w-full shadow-lg my-5">
         <div className="card-body p-2">
           <h2 className="card-title">Stats</h2>
           <div className="overflow-x-auto">
