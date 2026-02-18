@@ -4,7 +4,7 @@ import { HashRouter,
          Route,
  } from 'react-router';
 import { Home } from './Home';
- const Setup = () => <h1>Setup</h1>;
+import { Setup } from './Setup';
  const Play = () => <h1>Play</h1>;
 
 const App = () => {
