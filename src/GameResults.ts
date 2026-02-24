@@ -21,7 +21,7 @@ export type GeneralFacts = {
 // Exported functions
 //
 
-const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
+export const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
 
     if (games.length === 0) {
         return {

@@ -5,9 +5,9 @@ type HomeProps = {
     generalFacts: GeneralFacts
 };
 
-export const Home: React.FC<HomeProps> = (
+export const Home: React.FC<HomeProps> = ({
     generalFacts
-) => {
+}) => {
 
     console.log(
         generalFacts

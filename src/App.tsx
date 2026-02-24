@@ -1,8 +1,9 @@
 import './App.css'
-import { HashRouter,
-         Routes,
-         Route,
- } from 'react-router';
+import { 
+    HashRouter,
+    Routes,
+    Route,
+} from 'react-router';
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
@@ -35,7 +36,25 @@ const dummyGameResults: GameResult[] = [
 
 const App = () => {
 
+  //
+  // React hooks
+  //
 const [gameResults, setGameResults] = useState(dummyGameResults);
+// const [gameResults, setGameResults] = useState([]);
+
+//
+// Calculated state and other functions
+//
+const addNewGameResult = (gameResult: GameResult) => setGameResults(
+  [
+    ...gameResults,
+    gameResult,
+  ]
+);
+
+//
+// Return JSX
+//
  return (
   <div>
     <HashRouter>
@@ -50,21 +69,22 @@ const [gameResults, setGameResults] = useState(dummyGameResults);
               />
           }
         />
-
-          <Route
+        <Route
           path='/setup'
           element={
             <Setup />
           }
         />
-
-          <Route
+        <Route
           path='/play'
           element={
-            <Play/>
+            <Play
+              addNewGameResult={
+                addNewGameResult
+              }
+            />
           }
         />
-        
       </Routes>
       </HashRouter>
   </div>
