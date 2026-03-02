@@ -8,6 +8,7 @@ export type GameResult = {
 
     start: string;
     end: string;
+
 };
 
 export type GeneralFacts = {
