@@ -9,10 +9,6 @@ export const Home: React.FC<HomeProps> = ({
     generalFacts
 }) => {
 
-    console.log(
-        generalFacts
-    );
-
     // Write code here
     const nav = useNavigate();
 
