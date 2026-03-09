@@ -5,6 +5,7 @@ import {
     Route,
 } from 'react-router';
 import { Home } from './Home';
+import { APP_TITLE } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
 import { 
@@ -46,6 +47,7 @@ const App = () => {
   const [gameResults, setGameResults] = useState(dummyGameResults);
   //const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
+  const [title, setTitle] = useState(APP_TITLE);
 //
 // Calculated state and other functions
 //
@@ -67,7 +69,9 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
       <p 
         className='text-xl font-bold'
       >
-        UM Comparison
+        {
+          title
+        }
       </p>
     </div>
     <div 
