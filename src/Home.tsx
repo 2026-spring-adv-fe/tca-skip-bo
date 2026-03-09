@@ -29,9 +29,10 @@ export const Home: React.FC<HomeProps> = ({
             Setup a Game
         </button> 
 
-            <div className="card bg-base-100 w-full shadow-lg my-5">
+            <div className="card bg-base-100 w-full shadow-lg my-5 overflow-x-scroll">
                 <div className="card-body p-2">
-                    <h2 className="card-title">General Facts</h2>
+                    <h2 
+                    className="card-title text-no-wrap">General Facts</h2>
                     <table className="table table-zebra">
                         <tbody>
                             <tr>
@@ -54,9 +55,9 @@ export const Home: React.FC<HomeProps> = ({
                     </table>
                 </div>
             </div>
-            <div className="card bg-base-100 w-full shadow-lg my-5">
+            <div className="card bg-base-100 w-full shadow-lg my-5 overflow-x-scroll">
                 <div className="card-body p-2">
-                    <h2 className="card-title">Leaderboard</h2>
+                    <h2 className="card-title text-no-wrap">Leaderboard</h2>
                     {
                         leaderboard.length === 0
                             ? <p>N/A</p>
@@ -96,8 +97,7 @@ export const Home: React.FC<HomeProps> = ({
                                     </tbody>
                                 </table>
                             )
-                    }
-                            
+                    }          
                 </div>
             </div>
         </>
