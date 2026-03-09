@@ -64,6 +64,7 @@ const App = () => {
   //
   return (
     <div
+    className='min-h-screen'
     data-theme={ theme }>
       <div
         className="navbar bg-neutral text-neutral-content overflow-x-hidden flex flex-row"
