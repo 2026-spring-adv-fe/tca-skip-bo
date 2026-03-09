@@ -89,13 +89,16 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
               leaderboard={
                 getLeaderboard(gameResults)
               }
+              setTitle={setTitle}
+              
             />
           }
         />
         <Route
           path='/setup'
           element={
-            <Setup />
+            <Setup 
+            setTitle={setTitle}/>
           }
         />
         <Route
@@ -105,6 +108,7 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
               addNewGameResult={
                 addNewGameResult
               }
+              setTitle={setTitle}
             />
           }
         />

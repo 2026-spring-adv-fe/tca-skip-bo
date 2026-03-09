@@ -5,16 +5,18 @@ export const APP_TITLE = "Skip-Bo Companion";
 type HomeProps = {
     generalFacts: GeneralFacts,
     leaderboard: LeaderboardEntry[],
+    setTitle: (t: string) => void,
 };
 
 export const Home: React.FC<HomeProps> = ({
     generalFacts,
-    leaderboard
+    leaderboard,
+    setTitle
 }) => {
 
     // Write code here
     const nav = useNavigate();
-
+    setTitle("Skip-Bo Companion");
     // Return JSX
     return (
         <>
