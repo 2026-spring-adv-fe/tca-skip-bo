@@ -61,6 +61,15 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
 //
  return (
   <div>
+    <div 
+      className="navbar bg-neutral text-neutral-content"
+    >
+      <p 
+        className='text-xl font-bold'
+      >
+        UM Comparison
+      </p>
+    </div>
     <HashRouter>
       <Routes>
         <Route
@@ -73,7 +82,7 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
               leaderboard={
                 getLeaderboard(gameResults)
               }
-              />
+            />
           }
         />
         <Route
@@ -93,7 +102,7 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
           }
         />
       </Routes>
-      </HashRouter>
+    </HashRouter>
   </div>
  ) 
 }
