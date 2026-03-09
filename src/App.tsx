@@ -70,6 +70,9 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
         UM Comparison
       </p>
     </div>
+    <div 
+      className='p-3'
+    >
     <HashRouter>
       <Routes>
         <Route
@@ -103,6 +106,7 @@ const addNewGameResult = (gameResult: GameResult) => setGameResults(
         />
       </Routes>
     </HashRouter>
+    </div>
   </div>
  ) 
 }
