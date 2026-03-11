@@ -17,7 +17,6 @@ export const Setup: React.FC<SetupProps> = ({
     // Write code here
     const nav = useNavigate();
 
-    setTitle("Setup");
     // Return JSX
     return (
         <>

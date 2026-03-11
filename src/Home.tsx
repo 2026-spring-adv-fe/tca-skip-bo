@@ -22,7 +22,6 @@ export const Home: React.FC<HomeProps> = ({
 
     //We'll write code here
     const nav = useNavigate();
-    setTitle(APP_TITLE);
     // Return JSX
     return (
         <>
