@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import type { GameResult } from "./GameResults";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+export const APP_TITLE = "Play";
 
 type PlayProps = {
     addNewGameResult: (g: GameResult) => void;
@@ -12,9 +13,14 @@ export const Play: React.FC<PlayProps> = ({
     setTitle,
 }) => {
 
+    useEffect(
+            () => setTitle(APP_TITLE),
+            [],
+        );
+        
     // Write code here
     const nav = useNavigate();
-    setTitle("Play");
+    setTitle(APP_TITLE);
     const [startTimestamp] = useState(new Date().toISOString());
 
     // Return JSX
