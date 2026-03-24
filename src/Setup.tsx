@@ -1,16 +1,27 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
+export const APP_TITLE = "Setup";
 
-export const Setup = () => {
+type SetupProps = {
+    setTitle: (t: string) => void;
+}
+
+export const Setup: React.FC<SetupProps> = ({
+    setTitle,
+}) => {
+
+    useEffect(
+            () => setTitle(APP_TITLE),
+            [],
+        );
     // Write code here
     const nav = useNavigate();
+
     // Return JSX
     return (
         <>
-        <h1>
-            Setup
-        </h1>
         <button 
-            className="btn btn-primary btn-outline"
+            className="btn btn-soft btn-lg w-full lg:w-64"
             onClick={
                 () => nav('/play')
             }
