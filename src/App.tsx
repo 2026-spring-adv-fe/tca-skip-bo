@@ -11,6 +11,7 @@ import { Play } from './Play';
 import {
   getGeneralFacts,
   getLeaderboard,
+  getPreviousPlayers,
   type GameResult
 } from './GameResults';
 import { useEffect, useState } from 'react';
@@ -164,7 +165,10 @@ const App = () => {
               path='/setup'
               element={
                 <Setup
-                  setTitle={setTitle} />
+                  setTitle={setTitle} 
+                  previousPlayers={
+                    getPreviousPlayers(gameResults)
+                  }/>
               }
             />
             <Route

@@ -4,12 +4,16 @@ export const APP_TITLE = "Setup";
 
 type SetupProps = {
     setTitle: (t: string) => void;
+    previousPlayers: string[];
 }
 
 export const Setup: React.FC<SetupProps> = ({
     setTitle,
+    previousPlayers,
 }) => {
 
+    console.log(previousPlayers);
+    
     useEffect(
             () => setTitle(APP_TITLE),
             [],
