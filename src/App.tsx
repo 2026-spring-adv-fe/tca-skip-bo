@@ -109,7 +109,7 @@ const App = () => {
             checked={
               "light" !== theme
             }
-          onClick={
+          onChange={
             async () => {
               const result = await localforage.setItem<string>(
                 'theme',
