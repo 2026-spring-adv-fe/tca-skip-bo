@@ -29,25 +29,31 @@ export const Play: React.FC<PlayProps> = ({
     // Return JSX
     return (
         <>
-            <button 
-                className="btn btn-soft btn-lg w-full lg:w-64"
-                onClick={
-                    () => {
-                        addNewGameResult({
-                            winner: "Snape",
-                            players: [
-                                "Snape",
-                                "Dumbledore",
-                            ],
-                            start: startTimestamp,
-                            end: new Date().toISOString(),
-                        });
-                        nav(-2);
-                    }
-                }
-        >
-            Game Over
-        </button> 
+        {
+            players.map(
+                x => (
+                    <button
+                        className="btn btn-soft btn-lg w-full lg:w-64 mb-2"
+                        onClick={
+                            () => {
+                                addNewGameResult({
+                                    winner: x,
+                                    players: players,
+                                    start: startTimestamp,
+                                    end: new Date().toISOString(),
+                                });
+                                nav(-2);
+                            }
+                        }
+                    >
+                        {
+                            `${x} Won`
+                        }
+                    </button> 
+                )
+            )
+        }
+            
         </>
     )
 };
