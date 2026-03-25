@@ -6,12 +6,16 @@ export const APP_TITLE = "Play";
 type PlayProps = {
     addNewGameResult: (g: GameResult) => void;
     setTitle: (t: string) => void;
+    players: string[];
 };
 
 export const Play: React.FC<PlayProps> = ({
     addNewGameResult,
     setTitle,
+    players,
 }) => {
+
+    console.log(players);
 
     useEffect(
             () => setTitle(APP_TITLE),

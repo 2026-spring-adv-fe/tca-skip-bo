@@ -53,6 +53,8 @@ const App = () => {
 
   const [theme, setTheme] = useState("light");
 
+  const [currentPlayers, setCurrentPlayers] = useState<string[]>([]);
+
   useEffect(() => {
     const loadTheme = async () => {
       const result = await localforage.getItem<string>("theme") ?? "light";
@@ -168,17 +170,21 @@ const App = () => {
                   setTitle={setTitle} 
                   previousPlayers={
                     getPreviousPlayers(gameResults)
-                  }/>
+                  }
+                  
+                  setCurrentPlayers={setCurrentPlayers}
+                  />
               }
             />
             <Route
               path='/play'
               element={
                 <Play
+                  setTitle={setTitle}
                   addNewGameResult={
                     addNewGameResult
                   }
-                  setTitle={setTitle}
+                  players={currentPlayers}
                 />
               }
             />
