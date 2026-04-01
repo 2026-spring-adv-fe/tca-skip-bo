@@ -42,6 +42,11 @@ export const Setup: React.FC<SetupProps> = ({
     //
     // Derived state or other code
     //
+    const dupePlayerName = availablePlayers.some(
+        x => x.name === newPlayerName
+    );
+
+    const twoPlayersChosen = availablePlayers.filter(x => x.checked).length >= 2;
 
     // Return JSX
     return (
@@ -62,14 +67,22 @@ export const Setup: React.FC<SetupProps> = ({
                         nav('/play')
                     }
                 }
+                disabled={
+                    !twoPlayersChosen
+                }
             >
-                Start Game
+                {
+                    !twoPlayersChosen
+                        ? "Choose 2 Players"
+                        : "Start Game"
+                }
             </button>
             <div 
                 className="join mt-4"
             >
                 <input
-                    className="input join-item" 
+                    type="text"
+                    className={`input join-item ${dupePlayerName ? 'input-error' : ''}`}
                     placeholder="New Player Name" 
                     value={newPlayerName}
                     onChange={
@@ -81,15 +94,25 @@ export const Setup: React.FC<SetupProps> = ({
                 <button 
                     className="btn join-item rounded-r-full"
                     onClick={
-                        () => setAvailablePlayers(
-                            [
-                                ...availablePlayers,
-                                {
-                                    name: newPlayerName,
-                                    checked: true,
-                                }
-                            ]
-                        )
+                        () => () => {
+                            setAvailablePlayers(
+                                [
+                                    ...availablePlayers,
+                                    {
+                                        name: newPlayerName,
+                                        checked: true,
+                                    },
+                                ].sort(
+                                    (a, b) => a.name.localeCompare(b.name)
+                                )
+                            )
+                            setNewPlayerName(
+                                ""
+                            );
+                        }
+                    }
+                    disabled={
+                        newPlayerName.length === 0 || dupePlayerName
                     }
                 >
                     Add
