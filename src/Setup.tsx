@@ -11,23 +11,103 @@ export const Setup: React.FC<SetupProps> = ({
 }) => {
 
     useEffect(
-            () => setTitle(APP_TITLE),
-            [],
-        );
+        () => setTitle(APP_TITLE),
+        [],
+    );
     // Write code here
     const nav = useNavigate();
+
+    const [newPlayerName, setNewPlayerName] = useState("");
+
+    //
+    // Derived state or other code
+    //
 
     // Return JSX
     return (
         <>
-        <button 
-            className="btn btn-soft btn-lg w-full lg:w-64"
-            onClick={
-                () => nav('/play')
-            }
-        >
-            Start Game
-        </button> 
+            <button
+                className="btn btn-soft btn-lg w-full lg:w-64"
+                onClick={
+                    () => {
+                        setCurrentPlayers(
+                            availablePlayers
+                                .filter(
+                                    x => x.checked
+                                )
+                                .map(
+                                    x => x.name
+                                )
+                        )
+                        nav('/play')
+                    }
+                }
+            >
+                Start Game
+            </button>
+            <div 
+                className="join mt-4"
+            >
+                <input
+                    className="input join-item" 
+                    placeholder="New Player Name" 
+                    value={newPlayerName}
+                    onChange={
+                        (e) => setNewPlayerName(
+                            e.target.value
+                        )
+                    }
+                 />
+                <button 
+                    className="btn join-item rounded-r-full"
+                    onClick={
+                        () => setAvailablePlayers(
+                            [
+                                ...availablePlayers,
+                                {
+                                    name: newPlayerName,
+                                    checked: true,
+                                }
+                            ]
+                        )
+                    }
+                >
+                    Add
+                </button>
+            </div>
+            <div className="mt-4">
+                {
+                    availablePlayers.map(
+                        x => (
+                            <label
+                                key={x.name}
+                                className="block mt-2"
+                            >
+                                <input
+                                    type="checkbox"
+                                    className="checkbox mr-2"
+                                    checked={x.checked}
+                                    onChange={
+                                        () => setAvailablePlayers(
+                                            availablePlayers.map(
+                                                y => ({
+                                                    name: y.name,
+                                                    checked: y.name === x.name
+                                                        ? !y.checked
+                                                        : y.checked
+                                                    ,
+                                                })
+                                            )
+                                        )
+                                    }
+                                >
+                                </input>
+                                {x.name}
+                            </label>
+                        )
+                    )
+                }
+            </div>
         </>
     )
 };
