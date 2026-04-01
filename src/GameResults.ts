@@ -18,6 +18,7 @@ export type GeneralFacts = {
     totalGames: number;
     shortestGame: string;
     longestGame: string;
+    
 };
 
 export type LeaderboardEntry = {
