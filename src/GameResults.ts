@@ -18,7 +18,7 @@ export type GeneralFacts = {
     totalGames: number;
     shortestGame: string;
     longestGame: string;
-    
+    avgTurnsPerGame: string;
 };
 
 export type LeaderboardEntry = {
@@ -39,6 +39,7 @@ export const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
             totalGames: 0,
             shortestGame: "N/A",
             longestGame: "N/A",
+            avgTurnsPerGame: "NaN",
         }
     }
     const now = Date.now();
@@ -55,6 +56,10 @@ export const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
         x => Date.parse(x.end) - Date.parse(x.start)
     );
 
+    const totalTurns = games.reduce(
+        (acc, x) => acc + x.turnCount,
+        0,
+    );
     // console.log(
     //     gamesLastPlayedAgoInMilliseconds
     // );
@@ -74,6 +79,7 @@ export const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
                 ...gameDurationsInMilliseconds
             )
         ),
+        avgTurnsPerGame: (totalTurns / games.length).toFixed(2),
     };
 };
 

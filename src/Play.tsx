@@ -18,43 +18,82 @@ export const Play: React.FC<PlayProps> = ({
     console.log(players);
 
     useEffect(
-            () => setTitle(APP_TITLE),
-            [],
-        );
-        
+        () => setTitle(APP_TITLE),
+        [],
+    );
+
     // Write code here
     const nav = useNavigate();
     const [startTimestamp] = useState(new Date().toISOString());
 
+    const [turnNumber, setTurnNumber] = useState(1);
+
     // Return JSX
     return (
         <>
-        {
-            players.map(
-                x => (
-                    <button
-                        key={x}
-                        className="btn btn-soft btn-lg w-full lg:w-64 mb-2"
-                        onClick={
-                            () => {
-                                addNewGameResult({
-                                    winner: x,
-                                    players: players,
-                                    start: startTimestamp,
-                                    end: new Date().toISOString(),
-                                });
-                                nav(-2);
+            <p
+                className="text-lg font-bold inline"
+            >
+                {
+                    `Turn #${turnNumber}`
+                }
+
+            </p>
+            <button
+                className={`btn btn-outline btn-sm mx-2`}
+                disabled={turnNumber === 1}
+                // onClick={() => setTurnNumber(
+                //     turnNumber > 1 
+                //         ? turnNumber - 1
+                //         : turnNumber
+                //     // Math.max(
+                //     //     turnNumber - 1,
+                //     //     1,
+                //     // )
+                // )}
+                onClick={
+                    () => {
+                        if (turnNumber > 0) {
+                            setTurnNumber(turnNumber - 1);
+                        }
+                    }
+                }
+            >
+                -
+            </button>
+            <button
+                className="btn btn-outline btn-sm mx-2"
+                onClick={() => setTurnNumber(turnNumber + 1)}
+            >
+                +
+            </button>
+            {
+                players.map(
+                    x => (
+                        <button
+                            key={x}
+                            className="btn btn-soft btn-lg w-full lg:w-64 mb-2"
+                            onClick={
+                                () => {
+                                    addNewGameResult({
+                                        winner: x,
+                                        players: players,
+                                        start: startTimestamp,
+                                        end: new Date().toISOString(),
+                                        turnCount: turnNumber,
+                                    });
+                                    nav(-2);
+                                }
                             }
-                        }
-                    >
-                        {
-                            `${x} Won`
-                        }
-                    </button> 
+                        >
+                            {
+                                `${x} Won`
+                            }
+                        </button>
+                    )
                 )
-            )
-        }
-            
+            }
+
         </>
     )
 };
