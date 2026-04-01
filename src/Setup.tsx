@@ -94,7 +94,7 @@ export const Setup: React.FC<SetupProps> = ({
                 <button 
                     className="btn join-item rounded-r-full"
                     onClick={
-                        () => () => {
+                        () => {
                             setAvailablePlayers(
                                 [
                                     ...availablePlayers,
