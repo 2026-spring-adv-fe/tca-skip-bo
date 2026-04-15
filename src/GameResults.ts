@@ -27,6 +27,12 @@ export type LeaderboardEntry = {
     avg: string;
     name: string;
 };
+
+export type GameCountByMonth = {
+    month: string;
+    count: number;
+};
+
 //
 // Exported functions
 //
@@ -39,7 +45,7 @@ export const getGeneralFacts = (games: GameResult[]): GeneralFacts => {
             totalGames: 0,
             shortestGame: "N/A",
             longestGame: "N/A",
-            avgTurnsPerGame: "NaN",
+            avgTurnsPerGame: "N/A",
         }
     }
     const now = Date.now();
@@ -102,6 +108,50 @@ export const getLeaderboard = (
             : Number.parseFloat(b.avg) - Number.parseFloat(a.avg)
     )
 ;
+
+export const getGameCountsByMonth = (results: GameResult[]): GameCountByMonth[] => {
+
+    // Sentinal...
+    if (results.length == 0) {
+        return [];
+    }
+
+    const grouped = Map.groupBy(
+        results,
+        (x) => new Date(x.start).toLocaleString(
+            'default',
+            {
+                month: 'short',
+            }
+        ),
+    );
+
+    // console.log(
+    //     grouped
+    // );
+
+    return [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+    ]
+        .map(
+            x => ({
+                month: x,
+                count: grouped.get(x)?.length ?? 0
+            })
+        )
+    ;
+};
 
 //
 // Helper funcs

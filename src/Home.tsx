@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router";
-import type { GeneralFacts, LeaderboardEntry } from "./GameResults";
+import type { GeneralFacts, LeaderboardEntry, GameCountByMonth } from "./GameResults";
 import { useEffect } from "react";
 
 export const APP_TITLE = "Skip-Bo Companion";
 type HomeProps = {
     generalFacts: GeneralFacts,
+    gamesByMonth: GameCountByMonth[],
     leaderboard: LeaderboardEntry[],
     setTitle: (t: string) => void,
 };
 
 export const Home: React.FC<HomeProps> = ({
     generalFacts,
+    gamesByMonth,
     leaderboard,
     setTitle
 }) => {
@@ -109,6 +111,43 @@ export const Home: React.FC<HomeProps> = ({
                     }          
                 </div>
             </div>
+            <div className="card bg-base-100 w-full shadow-lg my-5 overflow-x-scroll">
+                <div className="card-body p-2">
+                    <h2 className="card-title text-no-wrap">Games by Month</h2>
+                    {
+                        gamesByMonth.length === 0
+                            ? <p>N/A</p>
+                            : (
+                                    <table className="table table-zebra">
+                                    <thead>
+                                        <tr>
+                                            <th>MONTH</th>
+                                            <th>GAME COUNT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            gamesByMonth.map(
+                                                x => (
+                                                    <tr
+                                                        key={x.month}
+                                                    >
+                                                        <td>
+                                                            {x.month}
+                                                        </td>
+                                                        <td>
+                                                            {x.count}
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                    }          
+                </div>
+            </div>            
         </>
     )
 };

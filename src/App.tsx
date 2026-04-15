@@ -10,6 +10,7 @@ import { Setup } from './Setup';
 import { Play } from './Play';
 import {
   getGeneralFacts,
+  getGameCountsByMonth,
   getLeaderboard,
   getPreviousPlayers,
   type GameResult
@@ -48,8 +49,8 @@ const App = () => {
   //
   // React hooks
   //
-  const [gameResults, setGameResults] = useState(dummyGameResults);
-  //const [gameResults, setGameResults] = useState<GameResult[]>([]);
+  // const [gameResults, setGameResults] = useState(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(APP_TITLE);
 
@@ -158,6 +159,9 @@ const App = () => {
                   generalFacts={
                     getGeneralFacts(gameResults)
                   }
+                  gamesByMonth={
+                    getGameCountsByMonth(gameResults)
+                  }                  
                   leaderboard={
                     getLeaderboard(gameResults)
                   }
