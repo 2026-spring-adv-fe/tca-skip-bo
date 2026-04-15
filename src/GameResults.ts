@@ -27,6 +27,7 @@ export type LeaderboardEntry = {
     avg: string;
     name: string;
 };
+
 //
 // Exported functions
 //

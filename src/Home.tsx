@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export const APP_TITLE = "Skip-Bo Companion";
 type HomeProps = {
     generalFacts: GeneralFacts,
+    avgGameDurations: any,
     leaderboard: LeaderboardEntry[],
     setTitle: (t: string) => void,
 };
