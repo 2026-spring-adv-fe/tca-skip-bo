@@ -82,6 +82,24 @@ const App = () => {
   [],
 );
 
+  useEffect(() => {
+    const loadEmail = async () => {
+      const result = await localforage.getItem<string>("email") ?? "";
+
+      if (!ignore) {
+        setEmailInDialog(result);
+      }
+    }
+
+    let ignore = false;
+    loadEmail();
+    
+    return () => {
+      ignore = true;
+    }
+  }, 
+  [],
+);
   //
   // Calculated state and other functions
   //
