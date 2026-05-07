@@ -17,6 +17,10 @@ import {
 } from './GameResults';
 import { useEffect, useRef, useState } from 'react';
 import localforage from 'localforage';
+import { 
+  saveGameToCloud,
+  loadGamesFromCloud,
+} from './tca-cloud-api';
 
 
 const dummyGameResults: GameResult[] = [
@@ -59,7 +63,9 @@ const App = () => {
   //const [currentPlayers, setCurrentPlayers] = useState<string[]>([]);
   const currentPlayersStateTuple = useState<string[]>([]);
 
-  const [emailInDialog, setEmailInDialog] = useState("foo@bar.com")
+  const [emailInDialog, setEmailInDialog] = useState("")
+
+  const [emailForCloudApi, setEmailForCloudApi] = useState("");
 
   const emailDialog = useRef<HTMLDialogElement>(null);
 
@@ -88,6 +94,7 @@ const App = () => {
 
       if (!ignore) {
         setEmailInDialog(result);
+        setEmailForCloudApi(result);
       }
     }
 
@@ -103,12 +110,30 @@ const App = () => {
   //
   // Calculated state and other functions
   //
-  const addNewGameResult = (gameResult: GameResult) => setGameResults(
+  const addNewGameResult = async (gameResult: GameResult) => {
+    // First, save the game result to the cloud...
+    if (emailForCloudApi.length >0) {
+      await saveGameToCloud(
+        emailForCloudApi,
+        "tca-skip-bo-26s",
+        gameResult.end,
+        gameResult,
+
+      );
+    }
+
+    //
+    // Optimisticially update local state...
+    //
+    // Assume it was correctly saved to the cloud above :(
+    //
+    setGameResults(
     [
       ...gameResults,
       gameResult,
     ]
   );
+}
 
   //
   // Return JSX
@@ -261,10 +286,14 @@ const App = () => {
                 <button 
                   className="btn btn-primary btn-lg"
                   onClick={
-                    async () => await localforage.setItem(
+                    async () => {
+                      const savedEmail = await localforage.setItem(
                       "email",
                       emailInDialog,
-                    )
+                    );
+
+                      setEmailForCloudApi(savedEmail);             
+                    }
                   }
                 >
                   Save
