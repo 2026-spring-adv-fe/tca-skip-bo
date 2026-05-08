@@ -88,8 +88,10 @@ const App = () => {
   [],
 );
 
-  useEffect(() => {
+  useEffect(
+    () => {
     const loadEmail = async () => {
+
       const result = await localforage.getItem<string>("email") ?? "";
 
       if (!ignore) {
@@ -107,6 +109,34 @@ const App = () => {
   }, 
   [],
 );
+
+
+  useEffect(
+    () => {
+    const loadGames = async () => {
+
+      const games = await loadGamesFromCloud(
+        emailForCloudApi,
+        "tca-skip-bo-26"
+      );
+
+      if (!ignore) {
+        setGameResults(games);
+      }
+    }
+
+    let ignore = false;
+    if (emailForCloudApi.length > 0) {
+        loadGames();
+    }
+    
+    
+    return () => {
+      ignore = true;
+    }
+  }, 
+  [emailForCloudApi],
+);
   //
   // Calculated state and other functions
   //
@@ -115,7 +145,7 @@ const App = () => {
     if (emailForCloudApi.length >0) {
       await saveGameToCloud(
         emailForCloudApi,
-        "tca-skip-bo-26s",
+        "tca-skip-bo-26",
         gameResult.end,
         gameResult,
 
@@ -291,8 +321,9 @@ const App = () => {
                       "email",
                       emailInDialog,
                     );
-
-                      setEmailForCloudApi(savedEmail);             
+                      if (savedEmail.length > 0) {
+                        setEmailForCloudApi(savedEmail);    
+                      }         
                     }
                   }
                 >
